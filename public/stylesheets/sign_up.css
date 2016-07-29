@@ -1,0 +1,41 @@
+body{
+	background: url(homepageimg.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+
+}
+
+
+sup {
+	color: red;
+}
+
+p {
+	font-style: Arial;
+	
+	font-size: 150%
+}
+
+h1 {
+	color: white;
+	font-size: 220%;
+}
+
+.boxed {
+  background: #463E3F;
+  margin: 500px 500px 500px 500px;
+    padding: 500px;
+}
+
+.jumbotron {
+	margin: 5px 5px 5px 5px;
+	background: #463E3F;
+}
+
+.jumbotron h1 {
+	
+}
+
+

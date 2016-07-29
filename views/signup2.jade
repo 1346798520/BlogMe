@@ -1,0 +1,113 @@
+doctype html
+html(lang='en')
+  head
+    <meta charset = "utf-8">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    link(rel='stylesheet', href='http://www.w3schools.com/lib/w3.css')
+    link(rel='stylesheet', type='text/css', href='stylesheets/sign_up.css')
+  body
+    .container
+      br
+      br
+      .jumbotron
+        center
+          .w3-container.w3-teal
+            h1 Sign Up!
+            
+          form.w3-container.w3-card-4.w3-dark-grey#form_add_user(name="adduser", method="post", action="/adduser", onsubmit="return validate()")
+            br
+            .form-group
+              p
+                label.w3-text- Name
+                sup *
+                input#username.form-control(type='text', name='username', maxlength='24')
+                .alert.alert-warning(role='alert')
+                  strong Try Again!
+                  |  Username already exists
+            .form-group
+              p
+                label.w3-text-white Email
+                sup *
+                input#email.form-control(type='text', name='email', maxlength='55')
+            .form-group
+              p
+                label.w3-text-white Password
+                sup *
+                input#psw.form-control(type='password', name='psw')
+            .form-group
+              p
+                label.w3-text-white Reenter Password
+                sup *
+                input#pswconfirm.form-control(type='password', name='pswconfirm')
+            .form-group
+              p
+                label.w3-text-white Phone
+                input#phone.form-control(type='text', name='phone')
+            br
+            .w3-row
+              .w3-half.form-group
+                p
+                  label(for='sel1') State:
+                  sup *
+                select#sel1.form-control(name='state')
+                  option(value='AZ', checked='')  Arizona 
+                  option(value='CA')  California 
+                  option(value='MD')  Maryland 
+                  option(value='OR')  Oregon 
+                  option(value='VA')  Virginia 
+                  option(value='Others')  Others 
+                br
+                br
+              .w3-half
+                p
+                  label.w3-text-white Gender
+                  sup *
+                input#male.w3-radio(type='radio', name='gender', value='male', checked='')
+                label.w3-validate Male
+                br
+                input#female.w3-radio(type='radio', name='gender', value='female')
+                label.w3-validate Female
+                br
+                input#unknown.w3-radio(type='radio', name='gender', value='', disabled='')
+                label.w3-validate Don't know
+            br
+            br
+            p
+              button.w3-btn.w3-padding.w3-teal#submit_user(type='submit', style='width:120px')  Submit! 
+    script.
+      function validate() {
+      var name = document.getElementById("username").value;
+      var psw1 = document.getElementById("psw").value;
+      var psw2 = document.getElementById("pswconfirm").value;
+      var emailID = document.getElementById("email").value;
+      var atpos = emailID.indexOf("@");
+      var dotpos = emailID.lastIndexOf(".");
+      if(name == "") {
+      alert("Please enter a User name!");
+      return false;
+      }
+      else if( (emailID != "") && ( (atpos < 1) || (dotpos - atpos < 2 ) || (emailID.length - 3 < dotpos) ) ) {
+      alert("Please enter the correct email!");
+      return false;
+      }
+      else if(psw1.value == "") {
+      alert("Please enter your password!");
+      return false;
+      }
+      else if(psw2.value == "") {
+      alert("Please confirm your password!");
+      return false;
+      }
+      else if (psw1 != psw2) {
+      alert("Sorry, passwords do not match.");
+      return false;
+      }
+      else if (psw1.length < 6) {
+      alert("Password must be at least 6 caracters.");
+      return false;
+      }
+      else {
+      return true;
+      }
+      }

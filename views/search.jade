@@ -1,0 +1,64 @@
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    link(rel='stylesheet', href='http://www.w3schools.com/lib/w3.css')
+    link(rel='stylesheet', type='text/css', href='stylesheets/myblog.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+  body
+    // nav Bar
+    .w3-top
+      ul.w3-navbar.w3-black.w3-large
+        li
+           &nbsp  
+        li
+          img(src='images/#{username}.jpg',style='height:40px')
+        li
+          a(href='/userhome') Home
+        li
+          a(href='/My_Blog') My Blog
+        li
+          a(href='/search') Search
+        li
+          a(href='/about') About Us
+        li.w3-right
+          img(src='images/blog_me.png',style='height:40px')
+    br
+    // profile card
+    #header
+      .container
+        .jumbotron
+          center
+            img.img-circle(src='images/#{username}.jpg' style='height:220px')
+            br
+            h1 #{username}
+            p Followers: 16 &nbsp  &nbsp  &nbsp  &nbsp   Following: 32
+            -if(bloglist == null)
+              p
+                | Blogs: 0 &nbsp 
+            -else
+              p
+                | Blogs: #{bloglist.length} &nbsp 
+            a.button.w3-btn.w3-right.w3-small.w3-round-XXlarge(href='/logout') Log Out
+    .container
+      form(role='form',method="post", action='/dosearch')
+        .form-group
+          label(for='usr') Search a User:
+          input#search_usr.form-control(type='text' name='search_usr')
+          br
+          button.w3-btn.w3-teal.w3-medium.w3-round-xlarge(type='submit') Search
+      hr
+      -if (result == null)
+        p Not found
+      -else
+        each usr, i in result
+          .w3-col.m2
+            .w3-container.w3-light-grey.w3-card-8(style='width:80%')
+              center
+                a(href='/others_blog?user2=#{usr.username}')
+                  img(src='images/#{usr.username}.jpg', alt='#{usr.username}', style='height:90px')
+                h5 #{usr.username}
+            br
+

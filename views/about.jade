@@ -1,0 +1,86 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='http://www.w3schools.com/lib/w3.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+    title About
+    // Bootstrap Core CSS
+    link(href='stylesheets/bootstrap.min.css', rel='stylesheet')
+    // Theme CSS
+    link(href='stylesheets/clean-blog.min.css', rel='stylesheet')
+    // Custom Fonts
+    link(href='stylesheets/font-awesome.min.css', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic', rel='stylesheet', type='text/css')
+    link(href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800', rel='stylesheet', type='text/css')
+    // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+    // WARNING: Respond.js doesn't work if you view the page via file://
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+  body
+    // nav Bar
+    .w3-top
+      ul.w3-navbar.w3-black.w3-large
+        li
+           &nbsp  
+        li
+          img(src='images/#{username}.jpg',style='height:40px')
+        li
+          a(href='/userhome') Home
+        li
+          a(href='/My_Blog') My Blog
+        li
+          a(href='/search') Search
+        li
+          a(href='/about') About Us
+        li.w3-right
+          img(src='images/blog_me.png',style='height:40px')
+    br
+    // Page Header
+    header.intro-header(style="background-image: url('images/blog.jpg')")
+      .container
+        .row
+          .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+            .page-heading
+              h1 About Us
+    // Main Content
+    .container
+      .row
+        .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+          h3 The Creators:
+          br 
+          h4 Evangaline Yuan and Isabella Lorence
+          p
+          img(src='images/globe.png')
+          br
+          br
+          | On opposite sides of the globe one thing will always connect us. Technology.
+          br
+          br
+          | Meeting at the Stanford Pre-Collegiate Summer Camp, we learned web technology, allowing us to create this website.
+          br
+          | BlogMe is a way for people to connect globally, but also to discover new information through the various types of blogs. You can keep up with old friends or learn about topics that interest you.
+          br
+          br
+          | BlogMe is centered on its user, we want to help you find the best Blogs4You and to connect friends' Blogs2You. 
+          br
+          br
+          h3 Contact Us:
+          br
+          h4 For questions or more information, please contact us at:
+          p
+            | Evangaline Yuan: yuanzhehui0325@gmail.com
+            br
+            | Isabella Lorence: isabella.lorence141@gmail.com
+    hr
+    // jQuery
+    script(src='javascripts/jquery.min.js')
+    // Bootstrap Core JavaScript
+    script(src='javascripts/bootstrap.min.js')
+    // Contact Form JavaScript
+    script(src='javascripts/jqBootstrapValidation.js')
+    // Theme JavaScript
+    script(src='javascripts/clean-blog.min.js')

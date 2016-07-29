@@ -1,0 +1,45 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+  body
+    .container
+      h2 Add a blog here
+      form(name="addblog", method="post", action="/addblog")
+        .form-group
+          label username
+          input#username.form-control(type='text', name='username')
+        .form-group
+          label title
+          input#title.form-control(type='text', name='title')
+        .form-group
+          label(for='comment') New blog:
+          textarea#content.form-control(rows='5', name='content')
+        button.btn.btn-default(type='submit')  Submit! 
+    br
+    hr
+    br
+    .container
+      h2 John's blog
+      br
+      br
+      -if (bloglist == null)
+        p No blogs...
+      -else
+        each blog, i in bloglist
+          p #{blog.user}: #{blog.title}
+          br
+          p.
+            #{blog.content}
+          br
+          form(name="like", type='button', method="post", action="/like")
+            button  Like &nbsp #{blog.like}
+          form(name="share", type='button', method="post", action="/share")
+            button Share &nbsp #{blog.share}
+          a(href='/delblog?user=#{blog.user},deltitle=#{blog.title}') Delete
+          br
+          br      

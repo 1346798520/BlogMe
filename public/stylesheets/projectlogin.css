@@ -1,0 +1,32 @@
+body{
+	background: url(homepageimg.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.jumbotron h1{
+	color: white;
+}
+
+body {
+	text-align:center;
+}
+
+.boxed h3{ 
+	color:white;
+ }
+
+.boxed {
+  background: #463E3F;
+  margin: 40px 40px 40px 42pc;
+    padding: 100px;
+}
+
+.jumbotron {
+	margin: 5px 5px 5px 5px;
+	background: #463E3F;
+}
+
+

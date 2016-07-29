@@ -1,0 +1,120 @@
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    link(rel='stylesheet', href='http://www.w3schools.com/lib/w3.css')
+    link(rel='stylesheet', type='text/css', href='stylesheets/myblog.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+  body
+    // nav Bar
+    .w3-top
+      ul.w3-navbar.w3-black.w3-large
+        li
+           &nbsp  
+        li
+          img(src='images/#{username}.jpg',style='height:40px')
+        li
+          a(href='/userhome') Home
+        li
+          a(href='/My_Blog') My Blog
+        li
+          a(href='/search') Search
+        li
+          a(href='/about') About Us
+        li.w3-right
+          img(src='images/blog_me.png',style='height:40px')
+    br
+    // profile card
+    #header
+      .container
+        .jumbotron
+          center
+            img.img-circle(src='images/#{username2}.jpg' style='height:220px')
+            br
+            h1 #{username2}
+            p Followers: 16 &nbsp  &nbsp  &nbsp  &nbsp   Following: 32
+            -if(bloglist == null)
+              p
+                | Blogs: 0 &nbsp 
+            -else
+              p
+                | Blogs: #{bloglist.length} &nbsp 
+            #{isfollowing}
+            - if(isfollowing)
+              a.button.w3-btn.w3-dark-grey.w3-medium.w3-round-xlarge(href='/disfollow?user2=#{username2}') - Unfollow
+            - else
+              a.button.w3-btn.w3-teal.w3-medium.w3-round-XXlarge(href='/follow?user2=#{username2}') + Follow
+    // add blog
+      #addblog.w3-modal
+        .w3-modal-content.w3-card-8.w3-animate-zoom(style='max-width:600px')
+          form.w3-container(name="addblog", method="post", action="/addblog")
+            .w3-section
+              label
+                b Username
+              input.w3-input.w3-border.w3-margin-bottom#username.form-control(type='text', placeholder='Username', name='username')
+              label
+                b Title
+              input.w3-input.w3-border.w3-margin-bottom#title.form-control(type='text', placeholder='Type your title here', name='title')
+              label
+                b Content
+              textarea.w3-input.w3-borderform-control(type='text', rows='7', placeholder='Type your blog here', name='content', required='')
+              button.w3-btn-block.w3-teal.w3-section.w3-padding(type='submit') Submit!
+          .w3-container.w3-border-top.w3-padding-16.w3-light-grey
+            button.w3-btn.w3-black(onclick="document.getElementById('addblog').style.display='none'", type='button') Cancel
+
+
+    body(data-spy='scroll', data-target='#myScrollspy', data-offset='20')
+      .w3-container
+        .col-sm-3
+          // sidnav
+          nav#myScrollspy
+            ul.nav.nav-pills.nav-stacked
+              li
+                a(href='#section1') #{username2}'s Blogs
+              li
+                a(href='#section2') #{username2}'s Favorites
+              li
+                a(href='#section3') #{username2}'s Followings
+              li
+                a(href='#section4') #{username2}'s Followers
+
+        .col-sm-9
+          section#section1.w3-container.w3-light-grey
+            h2  #{username2}'s blogs
+            -if (bloglist == null)
+              p No blogs...
+            -else
+              each blog, i in bloglist
+                .w3-card-8.w3-white(style='width:90%')
+                  .w3-container
+                    h3
+                      a(href='/others_blog?user2=#{blog.user}') #{blog.user}: 
+                      | &nbsp#{blog.title}
+                    hr
+                    p
+                      | #{blog.content}
+                      br
+                      br
+                      br
+                    .w3-section
+                      a.button.w3-btn.w3-medium.w3-dark-grey(href='/like2?like_blog=#{blog._id}') Like &nbsp #{blog.like.length}
+                      button.w3-btn.w3-medium.w3-dark-grey Share &nbsp #{blog.share} 
+                br      
+          hr
+          section#section2.w3-container
+            h2 #{username2}'s Favorites
+          hr
+          section#section3.w3-container
+            h2 #{username2}'s Followings
+          hr
+          section#section4.w3-container
+            h2 #{username2}'s Followers
+          hr
+          section#section51.w3-container
+            h2 #{username2}'s Change Profile Picture
+          hr
+          section#section52.w3-container
+            h2 #{username2}'s Change Background Picture
+          hr

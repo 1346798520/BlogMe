@@ -1,0 +1,47 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+    link(rel='stylesheet', type='text/css', href='stylesheets/projectlogin.css')
+    style.
+      a:link {
+      color: #00FFFF;
+      background-color: transparent;
+      text-decoration: none;
+      }
+      a:visited {
+      color: red;
+      background-color: transparent;
+      text-decoration: none;
+      }
+      a:hover {
+      color: #ADD8E6;
+      background-color: transparent;
+      text-decoration: underline;
+      }
+  body
+    .container
+      .jumbotron
+        h1 Welcome to Blog Me!
+    .boxed
+      h3(style='text-align:center') Login:
+      form#form_login(name="login", method="post", action='/login', style='text-align:center')
+        input#username.form-control(type='text', name='username', placeholder='Username', maxlength='55', required='', autofocus='')
+        br
+        input#psw.form-control(type='password', name='psw', placeholder='Password')
+        .alert.alert-warning(role='alert')
+          strong Try Again!
+          |  Wrong Password
+        br
+        a(href='/Find_psw') Forgot password?
+        button#user_login(type='submit', style='width:120px') Submit
+      br
+      br
+      br
+      br
+      h3(style='text-align:center') If you don't have an account, sign up here:
+      a(href='/signup') Sign Up

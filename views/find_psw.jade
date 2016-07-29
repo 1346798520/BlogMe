@@ -1,0 +1,51 @@
+doctype html
+html(lang='en')
+  head
+    h1 Forgot password?
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+    link(rel='stylesheet', href='http://www.w3schools.com/lib/w3.css')
+    style.
+      a: link {
+      color: #00FFFF;
+      background-color: transparent;
+      text-decoration: none;
+      }
+      a: visited {
+      color: red;
+      background-color: transparent;
+      text-decoration: none;
+      }
+      a: hover {
+      color: #ADD8E6;
+      background-color: transparent;
+      text-decoration: underline;
+      }
+    link(rel='stylesheet', type='text/css', href='stylesheets/find_psw.css')
+  body
+    h3 Enter your email and we will send you a reset password:
+    br
+    form.w3-container.w3-card-4.w3-dark-grey
+      br
+      .form-group
+        p
+          label.w3-text-white Email
+          input#email.form-control(type='text', name='email', maxlength='55')
+      p
+        button.w3-btn.w3-padding.w3-teal(type='button', style='width:120px', onclick='validate()')  Submit! 
+    script.
+      function validate() {
+      var emailID = document.getElementById("email").value;
+      var atpos = emailID.indexOf("@");
+      var dotpos = emailID.lastIndexOf(".");
+      if( (emailID != "") && ( (atpos < 1) || (dotpos - atpos < 2 ) || (emailID.length - 3 < dotpos) ) ) {
+      alert("Please enter the correct email!");
+      }
+      else {
+      alert('Submitted!');
+      }
+      }

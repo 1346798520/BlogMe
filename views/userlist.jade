@@ -1,0 +1,13 @@
+extends layout
+
+block content
+
+	h3.
+		Users
+
+	ul
+		each user, i in userlist
+			li#user_list_item
+				a(href='#') #{user.username}, #{user.psw}
+				//
+					#{user.email} , #{user.state}, #{user.gender}

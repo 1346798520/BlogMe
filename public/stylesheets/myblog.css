@@ -1,0 +1,53 @@
+.jumbotron{
+	position: relative;
+}
+
+/*body{
+  background: url(writing.gif) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}*/
+#header{
+  background-image: url("writing.gif");
+  no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+
+.w3-container p{
+  font-size: 20px;
+}
+
+.boxed{
+	background-color: #C0C0C0;
+}
+
+ body {
+      position: relative;
+  }
+  .affix {
+      top: 20px;
+  }
+  div.col-sm-9 div {
+      height: 250px;
+      font-size: 28px;
+  }
+  #section1 {background-color: #98AFC7;}
+  #section2 {background-color: #E0FFFF;}
+  #section3 {background-color: #C3FDB8;}
+  #section4 {background-color: #F4D9FB;}
+  #section51 {background-color: #FFF8DC;}
+  #section52 {background-color: #ECC5C0;}
+  
+  @media screen and (max-width: 810px) {
+    #section1, #section2, #section3, #section41, #section42  {
+        margin-left: 150px;
+    }
+  }
+

@@ -1,0 +1,190 @@
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css')
+    link(rel='stylesheet', href='http://www.w3schools.com/lib/w3.css')
+    link(rel='stylesheet', type='text/css', href='stylesheets/myblog.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js')
+  body
+    // nav Bar
+    .w3-top
+      ul.w3-navbar.w3-black.w3-large
+        li
+           &nbsp  
+        li
+          img.pfimg(src='images/#{username}.jpg',style='height:40px')
+        li
+          a(href='/userhome') Home
+        li
+          a(href='/My_Blog') My Blog
+        li
+          a(href='/search') Search
+        li
+          a(href='/about') About Us
+        li.w3-right
+          img(src='images/blog_me.png',style='height:40px')
+    br
+    // profile card
+    #header
+      .container
+        .jumbotron
+          center
+            img.pfimg.img-circle(src='images/#{username}.jpg',style='height:220px')
+            br
+            h1 #{username}
+            p Followers: 16 &nbsp  &nbsp  &nbsp  &nbsp   Following: 32
+            -if(bloglist == null)
+              p
+              | Blogs: 0 &nbsp 
+            -else
+              p
+                | Blogs: #{bloglist.length} &nbsp 
+            button.w3-btn.w3-teal.w3-medium.w3-round-xlarge(onclick="document.getElementById('addblog').style.display='block'") + Add a Blog
+            a.button.w3-btn.w3-right.w3-small.w3-round-XXlarge(href='/logout') Log Out
+    // add blog
+    #addblog.w3-modal
+      .w3-modal-content.w3-card-8.w3-animate-zoom(style='max-width:600px')
+        form.w3-container(name="addblog", method="post", action="/addblog")
+          .w3-section
+            label
+              b Title
+            input.w3-input.w3-border.w3-margin-bottom#title.form-control(type='text', placeholder='Type your title here', name='title')
+            label
+              b Content
+            textarea.w3-input.w3-borderform-control(type='text', rows='7', placeholder='Type your blog here', name='content', required='')
+            button.w3-btn-block.w3-teal.w3-section.w3-padding(type='submit') Submit!
+        .w3-container.w3-border-top.w3-padding-16.w3-light-grey
+          button.w3-btn.w3-black(onclick="document.getElementById('addblog').style.display='none'", type='button') Cancel
+
+    // del_cfm:  delete followings confirm
+    #del_cfm.w3-modal
+      .w3-modal-content.w3-card-8.w3-animate-zoom(style='max-width:500px')
+        .w3-center
+          br
+          h2  Delete this friend? 
+          br
+        .w3-container.w3-border-top.w3-padding-16.w3-light-grey
+          button.w3-btn.w3-red.w3-right(onclick="document.getElementById('del_cfm').style.display='none'", type='button', href='/delfollowing') &nbsp Yes &nbsp
+          button.w3-btn.w3-black.w3-right(onclick="document.getElementById('del_cfm').style.display='none'", type='button' ) Cancel
+
+    // show like
+    #show_like.w3-modal
+      .w3-modal-content.w3-card-8.w3-animate-zoom(style='max-width:500px')
+        .w3-center
+          br
+          h2  showlike 
+          br
+        .w3-container.w3-border-top.w3-padding-16.w3-light-grey
+          button.w3-btn.w3-black.w3-right(onclick="document.getElementById('show_like').style.display='none'", type='button') Cancel
+
+
+    body(data-spy='scroll', data-target='#myScrollspy', data-offset='20')
+      .w3-container
+        .col-sm-3
+          // sidnav
+          nav#myScrollspy
+            ul.nav.nav-pills.nav-stacked
+              li
+                a(href='#section1') My Blogs
+              li
+                a(href='#section2') Favorites
+              li
+                a(href='#section3') Followings
+              li
+                a(href='#section4') Followers
+              li.dropdown
+                a.dropdown-toggle(data-toggle='dropdown', href='#')
+                  | Profile
+                  span.caret
+                ul.dropdown-menu
+                  li
+                    a(href='#section51') Change Profile Picture
+                  li
+                    a(href='#section52') Change Background Picture
+        .col-sm-9
+          section#section1.w3-container.w3-light-grey
+            h2  My blogs
+            // show blog
+            -if (bloglist == null)
+              p No blogs...
+            -else
+              each blog, i in bloglist
+                .w3-card-8.w3-white(style='width:90%')
+                  .w3-container
+                    h3 #{blog.title}
+                    hr
+                    p
+                      | #{blog.content}
+                      br
+                      br
+                      br
+                    .w3-section
+                      a.button.w3-btn.w3-medium.w3-dark-grey(onclick='show_like()') Like &nbsp #{blog.like.length}
+                      button.w3-btn.w3-medium.w3-dark-grey Share &nbsp #{blog.share}
+                      a.button.w3-btn.w3-medium.w3-dark-grey(href='/delblog?deltitle=#{blog.title}') Delete   
+                br
+          hr
+          section#section2.w3-container
+            h2 Favorites
+          hr
+          section#section3.w3-container
+            h2 Followings
+            -if (followinglist == null)
+             p No followings
+            -else
+              //-var a=0
+              each following, i in followinglist
+                //a=a+1
+                //-if (a=7)
+                  //a=1
+                //document.getElementById(a)
+                .w3-col.m2
+                  .w3-container.w3-light-grey.w3-card-8(style='width:80%')
+                    span.w3-closebtn(onclick="document.getElementById('del_cfm').style.display='block'") ×
+                    center
+                      a(href='/others_blog?user2=#{following}')
+                        img.pfimg(src='images/#{following}.jpg', alt='#{following}', style='height:90px')
+                      h5 #{following}
+                  br
+            //
+              #1.w3-col.m2
+              #2.w3-col.m2
+              #3.w3-col.m2
+              #4.w3-col.m2
+              #5.w3-col.m2
+              #6.w3-col.m2
+          hr
+          section#section4.w3-container
+            h2 Followers
+            -if (followerlist == null)
+             p No followers
+            -else
+              each follower, i in followerlist
+                .w3-col.m2
+                  .w3-container.w3-light-grey.w3-card-8(style='width:80%')
+                    .w3-closebtn(onclick="document.getElementById('del_cfm').style.display='block'") ×
+                    center
+                      a(href='/others_blog?user2=#{follower}')
+                        img.pfimg(src='images/#{follower}.jpg', alt='#{follower}', style='height:90px')
+                      h5 #{follower}
+                  br
+
+          hr
+          section#section51.w3-container
+            h2 Change Profile Picture
+          hr
+          section#section52.w3-container
+            h2 Change Background Picture
+          hr
+  script.
+    function show_like() {
+    document.getElementById('show_like').style.display='block';
+    }
+    var x = document.getElementByClassName('pfimg');
+    for(var i = 0; i<x.length; i++) {
+    x[i].onerror = function() {
+    x[i].src= "images/pfimg.jpg";
+    }
+    }
